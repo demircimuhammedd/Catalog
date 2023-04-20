@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Anasayfa";
+}
+
+<div class="row">
+
+    @foreach (Product product in Model)
+    {
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="@product.Thumbnail" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">@product.BrandName</h5>
+                    <p class="card-text">@product.Title</p>
+                    <p class="card-price">@product.Price</p>
+                    <a href="/Home/Detail/@product.Id" class="btn btn-primary">Detay</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

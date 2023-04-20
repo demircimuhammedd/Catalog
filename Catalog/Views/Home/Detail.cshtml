@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Detay";
+    Layout = "_Layout";
+}
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6">
+                <div class="row">
+
+
+                    @foreach (string image in Model.Product.Images)
+                    {
+                        <div class="col-md-3">
+                            <img class="card-img-top mb-5 mb-md-0" src="@image" alt="...">
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="small mb-1">SKU: BST-498</div>
+                <h1 class="display-5 fw-bolder">@Model.Product.Title</h1>
+                <div class="fs-5 mb-5">
+                    <span>@Model.Product.Price ₺</span>
+                </div>
+                <p class="lead">
+                    @Model.Product.Description
+                </p>
+                <div class="d-flex">
+                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem">
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                        <i class="bi-cart-fill me-1"></i>
+                        Sepete Ekle
+                    </button>
+                </div>
+
+                <div class="fs-5 mt-5">
+                    @foreach (Feature feature in Model.Product.Features)
+                    {
+                        <div class="small mb-1">
+                            @feature.Name
+
+                            <div class="row">
+                                @foreach (FeatureItem item in feature.FeatureItems)
+                                {
+                                    <div class="col-md-3">
+                                        <button class="btn btn-outline-dark" type="button">
+                                            <i class="bi-cart-fill me-1"></i>
+                                            @item.Name
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="fs-5 mt-5">
+                    <div class="small mb-1">
+                        Renkler
+                        <div class="row">
+                            @foreach (Product product in Model.Products)
+                            {
+                                <div class="col-md-3">
+                                    <a href="/Home/Detail/@product.Id" class="btn btn-outline-dark" type="button">
+                                        <img src="@product.Thumbnail" width="64" alt=""/> &nbsp;
+                                        @product.Color
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
